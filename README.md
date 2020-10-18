@@ -1671,6 +1671,7 @@ Step Functions
 -   Step Functions are free tier eligible up to an initial 4000 transitions per month. Thereafter, the charge is $0.025 per 1000 state transitions.
 -   You can have many, simultaneous, executions, but be aware of lambda throttling limits. This has been per-account, pre-region, but recently became settable per-lambda.
 -   Step Function executions are limited to 25,000 events. Each step creates multiple events. This means that [iterating a loop using Lambda](https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-create-iterate-pattern-section.html) is limited to an iteration count of around 3000 before needing to [continue as a new execution](https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-continue-new.html).
+-   The maximum payload size (to communicate data between components) is 256K data. For more data than this limit, data must be stored/restored 
 
 Route 53
 --------
