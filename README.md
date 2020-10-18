@@ -1588,10 +1588,13 @@ Lambda
 - When using DynamoDB as a trigger for your Lambda functions, this error may occur: "PROBLEM: internal Lambda error. Please contact Lambda customer support." This usually just means that Lambda can't detect anything in the DynamoDB stream within the last 48 hours. If the issue persists, deleting and recreating your trigger may help.
 - 🔸If your lambda needs access to resources in a VPC (for example ElastiCache or RDS), it will need to be deployed within it. This will increase cold-start times as an Elastic Network Interface (ENI) will have to be registered within the VPC for each concurrent function. AWS also has a relatively low initial limit (350) on the number ENI's that can be created within an VPC, however this can be increased to the 1000s if a good case is made to AWS support.
 -	🔸 Lambda has several [**resource limits**](http://docs.aws.amazon.com/lambda/latest/dg/limits.html) as of 2017-06:
-	-	A **6MB** request or response payload size.
-	-	A **50 MB** limit on the compressed .zip/.jar file deployment package size.
-	-	A **250 MB** limit on the code/dependencies in the package before compression.
-	- A **500 MB** limit on local storage in /tmp.
+	- A **6MB** request or response payload size.
+	- A **50 MB** limit on the compressed .zip/.jar file deployment package size.
+	- A **250 MB** limit on the code/dependencies in the package before compression.
+	- A **500 MB** limit on local storage in /tmp (such as S3 and then mount /tmp to the S3 link)
+	- [2020] For more than **500 MB**, packages can be store in EBS and then be mounted.
+	- Packages can be loaded in **Cache-mode** to only be loaded once in the memory for all instances of that Lambda function.
+-  
 
 ### Lambda Code Samples
 
